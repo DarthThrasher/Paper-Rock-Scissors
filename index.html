@@ -10,12 +10,64 @@
 
 
 <script>
-    let arr = [paper, rock, scissors];
+    let arr = ['paper', 'rock', 'scissors'];
+    let compScore = 0;
+    let playScore = 0;
 
     function getComputerChoice() {
-        Math.floor(Math.random(arr))
+        let choice = arr[Math.floor(Math.random() * arr.length)]
+        return choice;
     }
-    console.log(getComputerChoice)
+    console.log(getComputerChoice())
+    function playRound(playerSelection, computerSelection) {
+        if(playerSelection == 'rock' && computerSelection == 'rock') {
+            return 'It\'s a tie!'
+        }else if(playerSelection == 'paper' && computerSelection == 'paper') {
+            return 'It\'s a tie!' 
+        }else if(playerSelection == 'scissors' && computerSelection == 'scissors') {
+            return 'It\'s a tie!' 
+        }else if(playerSelection === 'scissors' && computerSelection === 'rock') {
+  		    compScore++
+  		return 'You lost! Rock crushes Scissors'
+        }else if(playerSelection === 'scissors' && computerSelection === 'paper') {
+            playScore++
+            return 'You won! Scissors cuts Paper'
+        }else if(playerSelection === 'rock' && computerSelection === 'paper') {
+            compScore++
+            return 'You lost! Paper covers Rock'
+        }else if(playerSelection === 'rock' && computerSelection === 'scissors') {
+            playScore++
+            return 'You won! Rock crushes Scissors'
+        }else if(playerSelection === 'paper' && computerSelection === 'scissors') {
+            compScore++
+            return 'You lost! Scissors cuts Paper'
+        }else if(playerSelection === 'paper' && computerSelection === 'rock') {
+            playScore++
+            return 'You Won! Paper cover Pock'
+        }
+            
+    };
+
+    //const playerSelection = "rock";
+    
+    //console.log(playRound(playerSelection, computerSelection));
+
+    function game() {
+        for(let i = 0; i < 5; i++) {
+            const playerSelection = prompt('Choose what to throw', 'Rock, Paper, Scissors').toLowerCase()
+            const computerSelection = getComputerChoice();
+            playRound(playerSelection, computerSelection);
+
+        }
+        if (playScore > compScore) {
+		return 'Congrats! You beat the computer'
+        }else if(playScore < compScore) {
+            return 'You got beat be the Mighty Computer'
+        }else{
+            return 'It\'s a tie! Not bad'
+        }
+    }
+    console.log(game())
 </script>
 </body>
 </html>
